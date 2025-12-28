@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Generative Love</title>
+  <link rel="stylesheet" href="./style.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #ffffff;
+      color: rgb(255, 255, 255);
+    }
+
+    h1 {
+      margin-top: 20px;
+      font-size: 2em;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 40px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+  </style>
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<css-doodle grid="5">
+  :doodle {
+    @grid: 10 / 100%; 
+  }
+  background: @pick(
+    #ff0198, #8156a8, #ff6d00, #ff75e4
+  );
+
+  transform: translate(
+    @rand(-50vw, 50vw),
+    @rand(-50vh, 50vh)
+  );
+
+  @size: 3.5vmin;
+  @shape: heart;
+  @place-cell: 50% 50%;
+
+  animation-name: explosion;
+  animation-iteration-count: infinite;
+  animation-direction: reverse;
+  animation-duration: calc(@rand(2s, 5s, .1));
+  animation-delay: calc(@rand(-5s, -1s, .1));
+  animation-timing-function: 
+    cubic-bezier(.84, .02, 1, 1);
+
+  @keyframes explosion {
+    0% { opacity: 0; }
+    70% { opacity: 1; }
+    100% { transform: translate(0, 0); }
+  }
+</css-doodle>
+<!-- partial -->
+  <div class="gallery">
+    <img src="foto1.jpg" alt="Foto 1">
+    <img src="foto2.jpg" alt="Foto 2">
+    <img src="foto3.jpg" alt="Foto 3">
+    <img src="foto4.jpg" alt="Foto 4">
+
+  </div>
+  
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.5.1/css-doodle.min.js'></script>
+</body>
+</html>
